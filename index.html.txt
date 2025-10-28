@@ -1,194 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AetherCine — Aerial Videography and Post-Production</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background-color: #0e0e0e;
-      color: #f4f4f4;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 50px;
-      background-color: #121212;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    header h1 {
-      color: #ff6600;
-      font-size: 1.5rem;
-    }
-    nav a {
-      color: #f4f4f4;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover {
-      color: #ff6600;
-    }
-    section {
-      padding: 60px 10%;
-      max-width: 1000px;
-      margin: auto;
-    }
-    h2 {
-      color: #ff6600;
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-    }
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    iframe {
-      width: 100%;
-      height: 200px;
-      border-radius: 10px;
-      border: none;
-    }
-    .services {
-      display: grid;
-      gap: 15px;
-    }
-    .service-card {
-      background: #1a1a1a;
-      border-left: 4px solid #ff6600;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .tabs {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .tab-btn {
-      background: none;
-      border: 2px solid #ff6600;
-      color: #f4f4f4;
-      padding: 10px 20px;
-      margin: 0 10px;
-      cursor: pointer;
-      border-radius: 30px;
-      font-weight: 500;
-    }
-    .tab-btn.active, .tab-btn:hover {
-      background: #ff6600;
-      color: #0e0e0e;
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    footer {
-      background: #121212;
-      padding: 40px 10%;
-      text-align: center;
-      border-top: 2px solid #ff6600;
-    }
-    footer a {
-      color: #ff6600;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    footer p {
-      font-size: 0.9rem;
-      color: #999;
-      margin-top: 10px;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AetherCine — Video production from above</title>
+<link rel="icon" href="#" />
+<style>
+  :root{
+    --accent: #ff4c29;    /* vivid red */
+    --bg: #121212;       /* dark gray */
+    --white: #ffffff;
+    --black: #000000;
+    --muted: #9a9a9a;
+    --radius: 12px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: var(--bg);
+    color:var(--white);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px; background:linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.28));
+    border-bottom:1px solid rgba(255,255,255,0.03);
+  }
+  .brand{
+    display:flex; gap:12px; align-items:center;
+  }
+  .logo-placeholder{
+    width:52px; height:52px; border-radius:10px;
+    background: linear-gradient(135deg, rgba(255,76,41,0.18), rgba(255,76,41,0.08));
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; color:var(--white); border:1px solid rgba(255,76,41,0.12);
+  }
+  .brand h1{ margin:0; font-size:1.05rem; color:var(--accent) }
+  .brand p{ margin:0; font-size:0.78rem; color:var(--muted) }
+
+  nav{ display:flex; gap:12px; align-items:center; }
+  nav a{
+    color:var(--white); text-decoration:none; font-weight:600; font-size:0.95rem;
+    padding:8px 12px; border-radius:999px;
+  }
+  nav a:hover{ background: rgba(255,255,255,0.03); color:var(--accent) }
+
+  /* Hero */
+  .hero{
+    position:relative; overflow:hidden;
+    min-height:66vh; display:flex; align-items:center; justify-content:center;
+  }
+  .hero video{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    min-width:100%; min-height:100%; width:auto; height:auto; z-index:0;
+    object-fit:cover; filter:brightness(0.45);
+  }
+  .hero .content{
+    position:relative; z-index:2; text-align:center; padding:48px 20px; max-width:1100px;
+  }
+  .kicker{ color:var(--accent); font-weight:700; letter-spacing:0.02em; }
+  .title{ font-size:2.4rem; margin:10px 0; color:var(--white); }
+  .subtitle{ color:#dcdcdc; margin-bottom:12px; font-size:1.05rem; }
+  .available{ color:#dcdcdc; font-weight:600; margin-bottom:18px; }
+
+  .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
+  .btn{
+    background:var(--accent); color:var(--black); border:none; padding:12px 18px; border-radius:999px;
+    font-weight:700; cursor:pointer; text-decoration:none;
+  }
+  .btn.secondary{ background:transparent; color:var(--white); border:1px solid rgba(255,255,255,0.08) }
+
+  /* Main sections */
+  .wrap{ max-width:1100px; margin:40px auto; padding:0 20px; }
+
+  /* Video slider */
+  .slider{
+    display:flex; gap:12px; align-items:center; justify-content:center; margin-top:18px;
+  }
+  .arrow{ background:rgba(255,255,255,0.04); border-radius:8px; padding:10px; cursor:pointer; border:none; color:var(--white) }
+  .video-frame{
+    width:720px; max-width:100%; border-radius:12px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.6);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .controls{ display:flex; gap:10px; justify-content:center; margin-top:12px; align-items:center; }
+
+  /* Services */
+  .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:18px; margin-top:18px; }
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:18px; border-radius:12px; border-left:4px solid var(--accent);
+  }
+  .card h3{ margin:0 0 8px 0; color:var(--accent) }
+
+  /* 3D & Hobbies links */
+  .hobby-links { display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; }
+  .hobby{
+    display:flex; gap:10px; align-items:center; padding:10px 14px; border-radius:12px;
+    background:rgba(255,255,255,0.02); text-decoration:none; color:var(--white);
+    transform: translateY(0); transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .hobby:hover{ transform: translateY(-6px); box-shadow:0 8px 30px rgba(0,0,0,0.5) }
+
+  .hobby .icon{
+    width:44px; height:44px; border-radius:9px; display:grid; place-items:center; font-weight:700; background:linear-gradient(135deg,var(--accent), #ff8a6b);
+  }
+
+  /* Contact & form */
+  .contact-row{ display:flex; gap:28px; flex-wrap:wrap; }
+  .contact-card{ flex:1 1 320px; background:rgba(255,255,255,0.02); padding:18px; border-radius:12px; }
+  .contact-card p{ margin:8px 0; color:#dcdcdc }
+  form .row{ display:flex; gap:10px; margin-bottom:10px; }
+  label{ display:block; font-weight:600; font-size:0.86rem; color:#ddd; margin-bottom:6px }
+  input, textarea, select{
+    width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.28); color:var(--white);
+  }
+  textarea{ min-height:120px; resize:vertical; }
+
+  /* QR codes and socials */
+  .socials{ display:flex; gap:12px; margin-top:10px; align-items:center; }
+  .qr{ display:flex; gap:8px; align-items:center; background:rgba(255,255,255,0.02); padding:8px; border-radius:10px; }
+  .qr img{ width:86px; height:86px; object-fit:cover; border-radius:8px; }
+
+  /* Merch */
+  .merch{ margin-top:18px; padding:14px; border-radius:12px; background: linear-gradient(90deg, rgba(255,76,41,0.03), rgba(0,0,0,0.02)); border:1px solid rgba(255,76,41,0.05); }
+
+  footer{ margin-top:40px; padding:26px 20px; text-align:center; color:var(--muted); border-top:1px solid rgba(255,255,255,0.02) }
+
+  /* Responsive tweaks */
+  @media (max-width:720px){
+    .title{ font-size:1.6rem }
+    .video-frame{ width:100% }
+    .slider{ flex-direction:column; gap:8px }
+    .contact-row{ flex-direction:column }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>AetherCine</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section id="home">
-    <h2>Video Production from Above</h2>
-    <p>
-      Professional aerial videography and post-production based in <b>Los Angeles, California</b>.<br/>
-      Certified drone pilot providing creative visuals and precise aerial inspections.
-    </p>
-
-    <div class="tabs">
-      <button class="tab-btn active" onclick="showTab('portfolioTab')">Portfolio</button>
-      <button class="tab-btn" onclick="showTab('hobbyTab')">3D & Hobbies</button>
+<header>
+  <div class="brand">
+    <div class="logo-placeholder">AC</div>
+    <div>
+      <h1>AetherCine</h1>
+      <p>Video production from above — Los Angeles, California</p>
     </div>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#hobbies">3D & Hobbies</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-    <div id="portfolioTab" class="tab-content active">
-      <h2>Portfolio</h2>
-      <div class="video-grid">
-        <iframe src="https://www.youtube.com/embed/7eZM0-DFXMo" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/OHXOjFERkPI" allowfullscreen></iframe>
+<section id="home" class="hero" aria-label="Hero">
+  <!-- Background video: replace assets/hero-loop.mp4 with your file -->
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="assets/hero-loop.mp4" type="video/mp4">
+    <!-- fallback solid color if video missing -->
+  </video>
+
+  <div class="content">
+    <div class="kicker">Aerial • Inspection • Post-production</div>
+    <div class="title">AetherCine — Video production from above</div>
+    <div class="subtitle">Professional aerial videography and post-production.</div>
+    <div class="available">Available nationwide.</div>
+
+    <div class="cta-row">
+      <a class="btn" href="#portfolio">View Portfolio</a>
+      <a class="btn secondary" href="#contact">Contact / Request</a>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" aria-label="Portfolio">
+    <h2 style="color:var(--accent)">Portfolio</h2>
+    <p style="color:#cfcfcf">Selected videos from the AetherCine channel. Use arrows or click Random to show another clip.</p>
+
+    <div class="slider">
+      <button class="arrow" id="prevBtn" title="Previous">&#10094;</button>
+
+      <div class="video-frame" id="videoContainer">
+        <!-- iframe will be injected here -->
       </div>
+
+      <button class="arrow" id="nextBtn" title="Next">&#10095;</button>
     </div>
 
-    <div id="hobbyTab" class="tab-content">
-      <h2>3D & Hobby Projects</h2>
-      <p>
-        Product reviews, drone upgrades, technical solutions, electronics teardown and repair, 
-        3D modeling and printing, and custom parts for sale.
-      </p>
+    <div class="controls">
+      <button class="btn secondary" id="randomBtn">Random</button>
+      <div style="color:var(--muted); font-size:0.9rem; margin-left:8px">Channel: <a href="https://www.youtube.com/@Aether_Cine" target="_blank" style="color:var(--accent)">Aether_Cine</a></div>
     </div>
+
+    <script>
+      // Video list — add more YouTube video IDs here to expand available clips
+      const videoIDs = [
+        "7eZM0-DFXMo",
+        "OHXOjFERkPI"
+        // add more video IDs as strings: "VIDEO_ID"
+      ];
+
+      let index = 0;
+      const container = document.getElementById('videoContainer');
+
+      function showVideo(i) {
+        if(i<0) i = videoIDs.length - 1;
+        if(i>=videoIDs.length) i = 0;
+        index = i;
+        const id = videoIDs[index];
+        container.innerHTML = `
+          <iframe src="https://www.youtube.com/embed/${id}?rel=0&showinfo=0&autoplay=0"
+            width="100%" height="420" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        `;
+      }
+
+      document.getElementById('prevBtn').addEventListener('click', ()=> showVideo(index-1));
+      document.getElementById('nextBtn').addEventListener('click', ()=> showVideo(index+1));
+      document.getElementById('randomBtn').addEventListener('click', ()=>{
+        const r = Math.floor(Math.random()*videoIDs.length);
+        showVideo(r);
+      });
+
+      // init
+      showVideo(0);
+    </script>
+
   </section>
 
-  <section id="services">
-    <h2>Services</h2>
-    <div class="services">
-      <div class="service-card">
+  <!-- SERVICES -->
+  <section id="services" style="margin-top:32px">
+    <h2 style="color:var(--accent)">Services</h2>
+    <div class="grid">
+      <div class="card">
         <h3>Drone Videography</h3>
-        <p>High-quality aerial filming in 4K for commercials, events, and creative projects.</p>
+        <p>4K aerial filming for commercial projects, events, real estate and more.</p>
       </div>
-      <div class="service-card">
-        <h3>Aerial Inspections</h3>
-        <p>Detailed inspections including infrared imagery for structures, roofs, and equipment.</p>
+      <div class="card">
+        <h3>Aerial & Infrared Inspections</h3>
+        <p>Professional video inspections, including infrared imaging for structures and equipment.</p>
       </div>
-      <div class="service-card">
+      <div class="card">
         <h3>Post-Production</h3>
-        <p>Professional video editing, color grading, and motion graphics for stunning results.</p>
+        <p>Editing, color grading, motion graphics and sound design for finished results.</p>
+      </div>
+      <div class="card">
+        <h3>Repairs & Technical</h3>
+        <p>Drone upgrades, technical solutions, product teardowns and reviews as part of R&D.</p>
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>
-      📍 Los Angeles, California<br/>
-      📧 <a href="mailto:hristina.cheer@gmail.com">hristina.cheer@gmail.com</a><br/>
-      📞 <a href="tel:+15594848819">+1 559-484-8819</a>
-    </p>
-    <p>
-      <a href="https://www.instagram.com/_xristinka_/" target="_blank">Instagram</a> |
-      <a href="https://www.youtube.com/@Aether_Cine" target="_blank">YouTube</a>
-    </p>
+  <!-- HOBBIES / 3D -->
+  <section id="hobbies" style="margin-top:32px">
+    <h2 style="color:var(--accent)">3D & Hobbies</h2>
+    <p style="color:#cfcfcf">Reverse Engineering • 3D Printing • CNC service • 2D drawings</p>
+
+    <div class="hobby-links" style="margin-top:12px">
+      <a class="hobby" href="https://cults3d.com/en/users/3D_Monster/3d-models" target="_blank">
+        <div class="icon">C</div>
+        <div>
+          <div style="font-weight:700">Cults3D</div>
+          <div style="font-size:0.86rem;color:var(--muted)">3D models</div>
+        </div>
+      </a>
+
+      <a class="hobby" href="https://www.thingiverse.com/3DPrinting_3DModeling/designs" target="_blank">
+        <div class="icon">T</div>
+        <div>
+          <div style="font-weight:700">Thingiverse</div>
+          <div style="font-size:0.86rem;color:var(--muted)">Designs & downloads</div>
+        </div>
+      </a>
+
+      <a class="hobby" href="https://www.youtube.com/@ChillGizmos" target="_blank">
+        <div class="icon">Y</div>
+        <div>
+          <div style="font-weight:700">Chill Gizmos</div>
+          <div style="font-size:0.86rem;color:var(--muted)">Reviews & experiments</div>
+        </div>
+      </a>
+    </div>
   </section>
 
-  <footer>
-    <p>© 2025 AetherCine. All Rights Reserved.</p>
-  </footer>
+  <!-- CONTACT -->
+  <section id="contact" style="margin-top:32px">
+    <h2 style="color:var(--accent)">Contact</h2>
+    <div class="contact-row">
+      <div class="contact-card">
+        <p><strong>Phone:</strong> 559 484 88 19</p>
+        <p><strong>Email:</strong> <a href="mailto:khrstina.fpv@gmail.com" style="color:var(--accent)">khrstina.fpv@gmail.com</a></p>
+        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/khristina_fpv/" target="_blank" style="color:var(--accent)">@khristina_fpv</a></p>
+        <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@Aether_Cine" target="_blank" style="color:var(--accent)">Aether_Cine</a></p>
+        <p><strong>Website:</strong> <a href="https://www.aethercine.com" target="_blank" style="color:var(--accent)">www.aethercine.com</a></p>
 
-  <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      event.target.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
-    }
-  </script>
+        <div class="socials" style="margin-top:14px">
+          <div class="qr">
+            <div style="font-size:0.9rem; font-weight:700">Instagram</div>
+            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://www.instagram.com/khristina_fpv/" alt="Instagram QR">
+          </div>
+          <div class="qr">
+            <div style="font-size:0.9rem; font-weight:700">YouTube</div>
+            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://www.youtube.com/@Aether_Cine" alt="YouTube QR">
+          </div>
+        </div>
+
+        <div class="merch">
+          <h4 style="margin:0 0 8px 0; color:var(--accent)">Merch & Support</h4>
+          <p style="margin:0 0 10px 0; color:var(--muted)">Thinking about merch, prints and donation options — coming soon. Support options: PayPal / Ko-fi / Patreon (links to be added).</p>
+          <div style="display:flex; gap:10px;">
+            <a class="btn secondary" href="#" onclick="alert('Merch link placeholder')">Buy merch</a>
+            <a class="btn" href="#" onclick="alert('Donate link placeholder')">Donate</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact form (FormSubmit) -->
+      <div class="contact-card" style="min-width:300px; max-width:540px;">
+        <h3 style="color:var(--accent); margin-top:0">Request a video service</h3>
+        <p style="color:var(--muted)">Fill the form and we'll contact you. (Sends to khrstina.fpv@gmail.com)</p>
+
+        <!-- FormSubmit endpoint (no mail client). First-time use may require verification email from FormSubmit.co -->
+        <form id="requestForm" action="https://formsubmit.co/khrstina.fpv@gmail.com" method="POST">
+          <!-- anti-spam and config -->
+          <input type="hidden" name="_subject" value="New AetherCine service request">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <!-- redirect after submit (optional) -->
+          <input type="hidden" name="_next" value="https://aethercine.com/thank-you.html">
+
+          <label for="email">Email for response</label>
+          <input id="email" name="Email" type="email" placeholder="you@example.com" required>
+
+          <div class="row">
+            <div style="flex:1">
+              <label for="state">State / City / ZIP</label>
+              <input id="state" name="Location" placeholder="Los Angeles, CA" required>
+            </div>
+            <div style="width:140px">
+              <label for="date">Project date</label>
+              <input id="date" name="Date" type="date" required>
+            </div>
+          </div>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="Message" placeholder="Project details, goals, budget..." required></textarea>
+
+          <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+            <button class="btn" type="submit">Submit Request</button>
+            <button type="button" class="btn secondary" onclick="document.getElementById('requestForm').reset()">Reset</button>
+          </div>
+        </form>
+
+        <p style="color:var(--muted); font-size:0.85rem; margin-top:12px">We use FormSubmit.co to receive messages. First submission may require a one-time confirmation via email.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div style="max-width:1100px; margin:auto; padding:8px 20px;">
+    <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap">
+      <div style="text-align:left">
+        <div style="font-weight:700; color:var(--accent)">AetherCine</div>
+        <div style="color:var(--muted)">Los Angeles, California • Available nationwide</div>
+      </div>
+      <div style="text-align:right">
+        <div style="color:var(--muted)">© <span id="yr"></span> AetherCine — All rights reserved</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Footer year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Enhance form submission UX (prevent multiple clicks)
+  const form = document.getElementById('requestForm');
+  form.addEventListener('submit', function(e){
+    // Optionally show a quick UI message
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+  });
+
+  // If you want to add more videos: edit the videoIDs array in the portfolio section.
+  // To automatically fetch channel videos you'd need YouTube Data API key and server-side code (or client-side with API key).
+</script>
+
 </body>
 </html>
