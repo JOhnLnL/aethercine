@@ -71,9 +71,19 @@
 
   .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
   .btn{
-    background:var(--accent); color:var(--black); border:none; padding:12px 18px; border-radius:999px;
-    font-weight:700; cursor:pointer; text-decoration:none;
-  }
+   
+      background:var(--accent);
+      color:#ffffff;         /* ← белый текст, будет хорошо читаться */
+      border:none;
+      padding:11px 18px;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      font-size:0.92rem;
+      box-shadow:0 10px 25px rgba(255,76,41,0.4);
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+ }
   .btn.secondary{ background:transparent; color:var(--white); border:1px solid rgba(255,255,255,0.08) }
 
   /* Main sections */
@@ -306,12 +316,16 @@
         <div class="socials" style="margin-top:14px">
           <div class="qr">
             <div style="font-size:0.9rem; font-weight:700">Instagram</div>
-            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://www.instagram.com/khristina_fpv/" alt="Instagram QR">
-          </div>
-          <div class="qr">
-            <div style="font-size:0.9rem; font-weight:700">YouTube</div>
-            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://www.youtube.com/@Aether_Cine" alt="YouTube QR">
-          </div>
+           <img
+  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.instagram.com/khristina_fpv/"
+  alt="Instagram QR"
+/>
+
+<img
+  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.youtube.com/@Aether_Cine"
+  alt="YouTube QR"
+/>
+
         </div>
 
         <div class="merch">
@@ -401,3 +415,4 @@
 
 </body>
 </html>
+
