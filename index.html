@@ -1,36 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AetherCine — Video production from above</title>
+  <meta name="description" content="AetherCine — professional aerial videography, inspections, and post-production. Based in Los Angeles, California. Available nationwide." />
+  <style>
+    :root{
+      --accent: #ff4c29;    /* vivid red */
+      --bg: #121212;       /* dark gray */
+      --white: #ffffff;
+      --black: #000000;
+      --muted: #9a9a9a;
+      --radius: 12px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* HEADER */
+    header{
+      position:sticky; top:0; z-index:40;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 20px; background:linear-gradient(180deg, rgba(0,0,0,0.72), rgba(0,0,0,0.25));
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(16px);
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+    }
+    .logo-placeholder{
+      width:52px; height:52px; border-radius:10px;
+      background: linear-gradient(135deg, rgba(255,76,41,0.35), rgba(255,76,41,0.08));
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; color:var(--white);
+      border:1px solid rgba(255,76,41,0.35);
+      box-shadow:0 0 30px rgba(255,76,41,0.45);
+    }
+    .brand h1{ margin:0; font-size:1.05rem; color:var(--accent); letter-spacing:0.06em; text-transform:uppercase; }
+    .brand p{ margin:2px 0 0; font-size:0.78rem; color:var(--muted) }
+
+    nav{ display:flex; gap:10px; align-items:center; }
+    nav a{
+      color:var(--white); text-decoration:none; font-weight:600; font-size:0.9rem;
+      padding:7px 12px; border-radius:999px;
+      border:1px solid transparent;
+    }
+    nav a:hover{
+      border-color:rgba(255,255,255,0.1);
+      color:var(--accent);
+      background:rgba(255,255,255,0.02);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative; overflow:hidden;
+      min-height:68vh; display:flex; align-items:center; justify-content:center;
+      background: radial-gradient(circle at top, #1e1e1e 0, #050505 65%);
+    }
+    .hero video{
+      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      min-width:100%; min-height:100%; width:auto; height:auto; z-index:0;
+      object-fit:cover; filter:brightness(0.42) contrast(1.1);
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:radial-gradient(circle at center, rgba(0,0,0,0.0), rgba(0,0,0,0.7));
+      z-index:1;
+    }
+    .hero .content{
+      position:relative; z-index:2; text-align:center; padding:60px 20px 40px; max-width:1100px;
+    }
+    .kicker{
+      color:var(--accent); font-weight:700; letter-spacing:0.16em;
+      text-transform:uppercase; font-size:0.78rem;
+    }
+    .title{
+      font-size:2.4rem; margin:12px 0 8px; color:var(--white);
+    }
+    .subtitle{
+      color:#dcdcdc; margin-bottom:6px; font-size:1.02rem;
+    }
+    .available{
+      color:#eaeaea; font-weight:600; margin-bottom:10px; font-size:0.95rem;
+    }
+    .cert{
+      color:var(--muted); font-size:0.86rem; margin-bottom:18px;
+    }
+
+    .cta-row{
+      display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px;
+    }
+    .btn{
+      background:var(--accent); color:var(--black); border:none; padding:11px 18px; border-radius:999px;
+      font-weight:700; cursor:pointer; text-decoration:none; font-size:0.92rem;
+      box-shadow:0 10px 25px rgba(255,76,41,0.4);
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 14px 30px rgba(0,0,0,0.7);
+      background:#ff6b47;
+    }
+    .btn.secondary{
+      background:transparent; color:var(--white);
+      border:1px solid rgba(255,255,255,0.14);
+      box-shadow:none;
+    }
+    .btn.secondary:hover{
+      background:rgba(255,255,255,0.06);
+      color:var(--accent);
+    }
+
+    /* WRAP / MAIN LAYOUT */
+    .wrap{ max-width:1100px; margin:36px auto 40px; padding:0 20px; }
+
+    h2{
+      font-size:1.55rem;
+      margin:0 0 8px;
+      color:var(--accent);
+    }
+    p{ margin:6px 0; }
+
+    /* PORTFOLIO (SLIDER) */
+    .slider{
+      display:flex; gap:12px; align-items:center; justify-content:center; margin-top:18px;
+    }
+    .arrow{
+      background:rgba(255,255,255,0.03); border-radius:9px; padding:9px 11px;
+      cursor:pointer; border:1px solid rgba(255,255,255,0.08); color:var(--white);
+      font-size:1.1rem;
+      transition:background .12s ease, transform .12s ease;
+    }
+    .arrow:hover{ background:rgba(255,255,255,0.08); transform:translateY(-1px); }
+
+    .video-frame{
+      width:720px; max-width:100%; border-radius:14px; overflow:hidden;
+      box-shadow:0 18px 45px rgba(0,0,0,0.7);
+      border:1px solid rgba(255,255,255,0.04);
+      background:#000;
+    }
+    .controls{
+      display:flex; gap:10px; justify-content:center; margin-top:12px; align-items:center; flex-wrap:wrap;
+      font-size:0.9rem;
+    }
+
+    /* SERVICES */
+    .grid{
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap:18px; margin-top:18px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:16px 16px 14px; border-radius:12px; border-left:4px solid var(--accent);
+      border-right:1px solid rgba(255,255,255,0.02);
+      border-bottom:1px solid rgba(255,255,255,0.02);
+    }
+    .card h3{ margin:0 0 6px 0; color:var(--accent); font-size:1.02rem; }
+    .card p{ color:#d4d4d4; font-size:0.92rem; }
+
+    /* HOBBIES / 3D */
+    .hobby-links { display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; }
+    .hobby{
+      display:flex; gap:10px; align-items:center; padding:10px 14px; border-radius:12px;
+      background:rgba(255,255,255,0.02); text-decoration:none; color:var(--white);
+      transform: translateY(0); transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    .hobby:hover{
+      transform: translateY(-4px);
+      box-shadow:0 12px 30px rgba(0,0,0,0.6);
+      background:rgba(255,76,41,0.05);
+    }
+    .hobby .icon{
+      width:44px; height:44px; border-radius:9px; display:grid; place-items:center; font-weight:700;
+      background:linear-gradient(135deg,var(--accent), #ff8a6b);
+      color:var(--black);
+      font-size:1.02rem;
+    }
+    .hobby-title{ font-weight:700; }
+    .hobby-sub{ font-size:0.86rem; color:var(--muted); }
+
+    /* CONTACT */
+    .contact-row{ display:flex; gap:24px; flex-wrap:wrap; margin-top:10px; }
+    .contact-card{
+      flex:1 1 320px;
+      background:rgba(255,255,255,0.02);
+      padding:16px 16px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .contact-card p{ margin:6px 0; color:#e2e2e2; font-size:0.94rem; }
+    .contact-card a{ color:var(--accent); text-decoration:none; }
+    .contact-card a:hover{ text-decoration:underline; }
+
+    label{
+      display:block; font-weight:600; font-size:0.86rem; color:#ddd; margin-bottom:6px;
+    }
+    input, textarea{
+      width:100%; padding:9px 10px; border-radius:8px;
+      border:1px solid rgba(255,255,255,0.07);
+      background: rgba(0,0,0,0.32); color:var(--white);
+      font-size:0.92rem;
+    }
+    textarea{ min-height:120px; resize:vertical; }
+
+    form .row{ display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
+
+    /* QR & socials */
+    .socials{ display:flex; gap:10px; margin-top:12px; align-items:center; flex-wrap:wrap; }
+    .qr{
+      display:flex; gap:8px; align-items:center; background:rgba(255,255,255,0.02);
+      padding:8px 8px 8px 10px; border-radius:10px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .qr img{
+      width:86px; height:86px; object-fit:cover; border-radius:8px;
+      background:#000;
+    }
+
+    /* MERCH */
+    .merch{
+      margin-top:16px; padding:12px 12px 14px; border-radius:12px;
+      background: linear-gradient(90deg, rgba(255,76,41,0.12), rgba(0,0,0,0.02));
+      border:1px solid rgba(255,76,41,0.28);
+    }
+    .merch p{ color:var(--muted); font-size:0.86rem; }
+
+    /* FOOTER */
+    footer{
+      margin-top:40px; padding:22px 20px 26px;
+      text-align:center; color:var(--muted);
+      border-top:1px solid rgba(255,255,255,0.06);
+      background:radial-gradient(circle at top, #1a1a1a 0, #050505 60%);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:880px){
+      header{ flex-wrap:wrap; gap:10px; justify-content:space-between; }
+      nav{ width:100%; justify-content:flex-end; flex-wrap:wrap; }
+    }
+    @media (max-width:720px){
+      .title{ font-size:1.8rem; }
+      .hero{ min-height:72vh; }
+      .wrap{ margin-top:28px; }
+      .slider{ flex-direction:column; gap:8px; }
+      .video-frame{ width:100%; }
+      .contact-row{ flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo-placeholder">AC</div>
+    <div>
+      <h1>AetherCine</h1>
+      <p>Video production from above — Los Angeles, California</p>
+    </div>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#hobbies">3D & Hobbies</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="home" class="hero" aria-label="Hero">
+  <!-- Background video: put your mp4 file into /assets and update src -->
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="assets/hero-loop.mp4" type="video/mp4">
+    <!-- If no video, background gradient will show instead -->
+  </video>
+
+  <div class="content">
+    <div class="kicker">Aerial • Inspections • Post-production</div>
+    <div class="title">AetherCine — Video production from above</div>
+    <div class="subtitle">Professional aerial videography and post-production.</div>
+    <div class="available">Available nationwide.</div>
+    <div class="cert">FAA Part 107 certified remote pilot — based in Los Angeles, California.</div>
+
+    <div class="cta-row">
+      <a class="btn" href="#portfolio">View portfolio</a>
+      <a class="btn secondary" href="#contact">Request a video service</a>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" aria-label="Portfolio">
+    <h2>Portfolio</h2>
+    <p style="color:#cfcfcf">
+      Selected aerial work from the AetherCine YouTube channel.  
+      Use arrows or click <b>Random</b> to explore more.
+    </p>
+
+    <div class="slider">
+      <button class="arrow" id="prevBtn" title="Previous">&#10094;</button>
+
+      <div class="video-frame" id="videoContainer">
+        <!-- iframe injected by JS -->
+      </div>
+
+      <button class="arrow" id="nextBtn" title="Next">&#10095;</button>
+    </div>
+
+    <div class="controls">
+      <button class="btn secondary" id="randomBtn">Random video</button>
+      <div style="color:var(--muted); margin-left:4px">
+        Channel: 
+        <a href="https://www.youtube.com/@Aether_Cine" target="_blank" style="color:var(--accent); text-decoration:none;">
+          @Aether_Cine
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" style="margin-top:32px">
+    <h2>Services</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Drone Videography</h3>
+        <p>
+          4K aerial filming for commercial projects, real estate, events, social media content and storytelling from above.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Aerial & Infrared Inspections</h3>
+        <p>
+          Visual and infrared inspections of roofs, structures, solar panels, equipment and hard-to-reach areas.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Post-Production</h3>
+        <p>
+          Editing, color grading, sound design and motion graphics to turn raw footage into a finished story.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Technical & R&D Content</h3>
+        <p>
+          Product reviews, drone upgrades, teardown videos, repair walkthroughs and technical experiments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOBBIES / 3D -->
+  <section id="hobbies" style="margin-top:32px">
+    <h2>3D & Hobbies</h2>
+    <p style="color:#cfcfcf">
+      Reverse engineering • 3D printing • CNC service • 2D drawings
+    </p>
+
+    <div class="hobby-links">
+      <a class="hobby" href="https://cults3d.com/en/users/3D_Monster/3d-models" target="_blank">
+        <div class="icon">C</div>
+        <div>
+          <div class="hobby-title">Cults3D</div>
+          <div class="hobby-sub">Unique 3D models for printing</div>
+        </div>
+      </a>
+
+      <a class="hobby" href="https://www.thingiverse.com/3DPrinting_3DModeling/designs" target="_blank">
+        <div class="icon">T</div>
+        <div>
+          <div class="hobby-title">Thingiverse</div>
+          <div class="hobby-sub">Open-source designs & parts</div>
+        </div>
+      </a>
+
+      <a class="hobby" href="https://www.youtube.com/@ChillGizmos" target="_blank">
+        <div class="icon">Y</div>
+        <div>
+          <div class="hobby-title">Chill Gizmos</div>
+          <div class="hobby-sub">Reviews, experiments & gadgets</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section id="contact" style="margin-top:32px">
-    <h2 style="color:var(--accent)">Contact</h2>
+    <h2>Contact</h2>
     <div class="contact-row">
       
       <!-- CONTACT INFO + QR -->
       <div class="contact-card">
         <p><strong>Phone:</strong> 559 484 88 19</p>
-        <p><strong>Email:</strong> 
-          <a href="mailto:khrstina.fpv@gmail.com" style="color:var(--accent)">
+        <p><strong>Email:</strong>
+          <a href="mailto:khrstina.fpv@gmail.com">
             khrstina.fpv@gmail.com
           </a>
         </p>
-        <p><strong>Instagram:</strong> 
-          <a href="https://www.instagram.com/khrstina_fpv/" target="_blank" style="color:var(--accent)">
-            @khrstina_fpv
+        <p><strong>Instagram:</strong>
+          <a href="https://www.instagram.com/khristina_fpv/" target="_blank">
+            @khristina_fpv
           </a>
         </p>
-        <p><strong>YouTube:</strong> 
-          <a href="https://www.youtube.com/@Aether_Cine" target="_blank" style="color:var(--accent)">
+        <p><strong>YouTube:</strong>
+          <a href="https://www.youtube.com/@Aether_Cine" target="_blank">
             Aether_Cine
           </a>
         </p>
-        <p><strong>Website:</strong> 
-          <a href="https://www.aethercine.com" style="color:var(--accent)">
+        <p><strong>Website:</strong>
+          <a href="https://www.aethercine.com" target="_blank">
             www.aethercine.com
           </a>
         </p>
 
         <!-- QR CODES -->
-        <div class="socials" style="margin-top:14px">
+        <div class="socials">
           <div class="qr">
             <div style="font-size:0.9rem; font-weight:700">Instagram</div>
-            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://www.instagram.com/khrstina_fpv/" 
+            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://www.instagram.com/khristina_fpv/" 
                  alt="Instagram QR">
           </div>
           <div class="qr">
@@ -42,25 +439,25 @@
 
         <!-- MERCH -->
         <div class="merch">
-          <h4 style="margin:0 0 8px 0; color:var(--accent)">Merch & Support</h4>
-          <p style="margin:0 0 10px 0; color:var(--muted)">
-            Merch and donation options coming soon. Support via PayPal / Ko-fi / Patreon will be available here.
+          <h4 style="margin:0 0 6px 0; color:var(--accent)">Merch & Support</h4>
+          <p style="margin:0 0 10px 0;">
+            Merch and donation options are in development. Future plans include branded apparel, prints and support links (PayPal / Ko-fi / Patreon).
           </p>
-          <div style="display:flex; gap:10px;">
-            <a class="btn secondary" href="#" onclick="alert('Merch link placeholder')">Buy merch</a>
-            <a class="btn" href="#" onclick="alert('Donate link placeholder')">Donate</a>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn secondary" href="#" onclick="alert('Merch section coming soon'); return false;">Buy merch</a>
+            <a class="btn" href="#" onclick="alert('Donation links coming soon'); return false;">Donate</a>
           </div>
         </div>
       </div>
 
-
-      <!-- NEW FORMSPREE FORM -->
+      <!-- FORMSPREE FORM -->
       <div class="contact-card" style="min-width:300px; max-width:540px;">
         <h3 style="color:var(--accent); margin-top:0">Request a video service</h3>
-        <p style="color:var(--muted)">Fill out the form and I'll get back to you.</p>
+        <p style="color:var(--muted); font-size:0.9rem;">
+          Fill out the form below — you’ll receive a reply directly to your email.
+        </p>
 
         <form id="requestForm" action="https://formspree.io/f/mvgzgvzb" method="POST">
-
           <!-- hidden settings -->
           <input type="hidden" name="_subject" value="New AetherCine service request">
           <input type="hidden" name="_template" value="table">
@@ -73,25 +470,95 @@
               <label for="state">State / City / ZIP</label>
               <input id="state" name="Location" placeholder="Los Angeles, CA" required>
             </div>
-            <div style="width:140px">
+            <div style="width:160px; min-width:140px;">
               <label for="date">Project date</label>
               <input id="date" name="Project_Date" type="date" required>
             </div>
           </div>
 
           <label for="message">Message</label>
-          <textarea id="message" name="Message" placeholder="Project details, goals, budget..." required></textarea>
+          <textarea id="message" name="Message" placeholder="Project type, location, timing, budget range..." required></textarea>
 
-          <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
-            <button class="btn" type="submit">Submit Request</button>
+          <div style="margin-top:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <button class="btn" type="submit" id="submitBtn">Submit request</button>
             <button type="button" class="btn secondary" onclick="document.getElementById('requestForm').reset()">Reset</button>
           </div>
         </form>
 
-        <p style="color:var(--muted); font-size:0.85rem; margin-top:12px">
+        <p style="color:var(--muted); font-size:0.83rem; margin-top:10px;">
           Powered by Formspree — no email client required.
         </p>
       </div>
 
     </div>
   </section>
+
+</main>
+
+<footer>
+  <div style="max-width:1100px; margin:auto; padding:4px 20px;">
+    <div style="display:flex; justify-content:space-between; gap:10px; align-items:center; flex-wrap:wrap;">
+      <div style="text-align:left;">
+        <div style="font-weight:700; color:var(--accent)">AetherCine</div>
+        <div style="color:var(--muted); font-size:0.9rem;">Los Angeles, California • Available nationwide</div>
+      </div>
+      <div style="text-align:right; font-size:0.85rem;">
+        <span id="yr"></span> © AetherCine — All rights reserved
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dynamic year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Portfolio video slider
+  const videoIDs = [
+    "7eZM0-DFXMo",
+    "OHXOjFERkPI"
+    // add more YouTube IDs here: "VIDEO_ID"
+  ];
+
+  let index = 0;
+  const container = document.getElementById('videoContainer');
+
+  function showVideo(i) {
+    if (videoIDs.length === 0) {
+      container.innerHTML = "<div style='padding:20px; text-align:center; color:#ccc;'>No videos configured yet.</div>";
+      return;
+    }
+    if (i < 0) i = videoIDs.length - 1;
+    if (i >= videoIDs.length) i = 0;
+    index = i;
+    const id = videoIDs[index];
+    container.innerHTML = `
+      <iframe src="https://www.youtube.com/embed/${id}?rel=0&showinfo=0"
+        width="100%" height="420" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen loading="lazy"></iframe>
+    `;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => showVideo(index - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => showVideo(index + 1));
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    if (videoIDs.length === 0) return;
+    const r = Math.floor(Math.random() * videoIDs.length);
+    showVideo(r);
+  });
+
+  showVideo(0);
+
+  // Form UX: disable button on submit
+  const form = document.getElementById('requestForm');
+  const submitBtn = document.getElementById('submitBtn');
+  form.addEventListener('submit', function () {
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+  });
+</script>
+
+</body>
+</html>
