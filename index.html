@@ -141,7 +141,7 @@
     }
     .btn{
       background:var(--accent);
-      color:#ffffff; /* хорошо видимый белый текст */
+      color:#ffffff; /* белый текст */
       border:none;
       padding:11px 18px;
       border-radius:999px;
@@ -547,7 +547,7 @@
           <a href="mailto:khrstina.fpv@gmail.com">khrstina.fpv@gmail.com</a>
         </p>
         <p><strong>Instagram:</strong>
-          <a href="https://www.instagram.com/khrstina_fpv/" target="_blank">@khrstina_fpv</a>
+          <a href="https://www.instagram.com/khrstina_fpv/" target="_blank">@khristina_fpv</a>
         </p>
         <p><strong>YouTube:</strong>
           <a href="https://www.youtube.com/@Aether_Cine" target="_blank">Aether_Cine</a>
@@ -556,7 +556,7 @@
           <a href="https://www.aethercine.com" target="_blank">www.aethercine.com</a>
         </p>
 
-        <!-- QR CODES (новый сервис, иконки будут видны) -->
+        <!-- QR CODES -->
         <div class="socials">
           <div class="qr">
             <div style="font-size:0.9rem; font-weight:700">Instagram</div>
@@ -587,7 +587,7 @@
         </div>
       </div>
 
-      <!-- CONTACT FORM (FormSubmit) -->
+      <!-- CONTACT FORM (Formspree) -->
       <div class="contact-card" style="min-width:300px; max-width:540px;">
         <h3 style="color:var(--accent); margin-top:0">Request a video service</h3>
         <p style="color:var(--muted); font-size:0.9rem;">
@@ -596,13 +596,10 @@
 
         <form
           id="requestForm"
-          action="https://formsubmit.co/khrstina.fpv@gmail.com"
+          action="https://formspree.io/f/xvgeqjnz"
           method="POST"
         >
-          <!-- FormSubmit configuration -->
           <input type="hidden" name="_subject" value="New AetherCine service request">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
 
           <label for="email">Email for response</label>
           <input id="email" name="Email" type="email" placeholder="you@example.com" required>
@@ -628,7 +625,7 @@
         </form>
 
         <p style="color:var(--muted); font-size:0.83rem; margin-top:10px;">
-          Powered by FormSubmit.co — first submission may require a one-time confirmation email.
+          Powered by Formspree — no email client required.
         </p>
       </div>
 
