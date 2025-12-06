@@ -8,7 +8,7 @@
   <style>
     :root{
       --accent: #ff4c29;    /* vivid red */
-      --bg: #121212;       /* dark gray */
+      --bg: #121212;        /* dark gray */
       --white: #ffffff;
       --black: #000000;
       --muted: #9a9a9a;
@@ -30,7 +30,8 @@
     header{
       position:sticky; top:0; z-index:40;
       display:flex; align-items:center; justify-content:space-between;
-      padding:14px 20px; background:linear-gradient(180deg, rgba(0,0,0,0.72), rgba(0,0,0,0.25));
+      padding:14px 20px;
+      background:linear-gradient(180deg, rgba(0,0,0,0.72), rgba(0,0,0,0.25));
       border-bottom:1px solid rgba(255,255,255,0.06);
       backdrop-filter:blur(16px);
     }
@@ -45,13 +46,29 @@
       border:1px solid rgba(255,76,41,0.35);
       box-shadow:0 0 30px rgba(255,76,41,0.45);
     }
-    .brand h1{ margin:0; font-size:1.05rem; color:var(--accent); letter-spacing:0.06em; text-transform:uppercase; }
-    .brand p{ margin:2px 0 0; font-size:0.78rem; color:var(--muted) }
+    .brand h1{
+      margin:0;
+      font-size:1.05rem;
+      color:var(--accent);
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+    }
+    .brand p{
+      margin:2px 0 0;
+      font-size:0.78rem;
+      color:var(--muted);
+    }
 
-    nav{ display:flex; gap:10px; align-items:center; }
+    nav{
+      display:flex; gap:10px; align-items:center;
+    }
     nav a{
-      color:var(--white); text-decoration:none; font-weight:600; font-size:0.9rem;
-      padding:7px 12px; border-radius:999px;
+      color:var(--white);
+      text-decoration:none;
+      font-weight:600;
+      font-size:0.9rem;
+      padding:7px 12px;
+      border-radius:999px;
       border:1px solid transparent;
     }
     nav a:hover{
@@ -63,13 +80,16 @@
     /* HERO */
     .hero{
       position:relative; overflow:hidden;
-      min-height:68vh; display:flex; align-items:center; justify-content:center;
+      min-height:68vh;
+      display:flex; align-items:center; justify-content:center;
       background: radial-gradient(circle at top, #1e1e1e 0, #050505 65%);
     }
     .hero video{
       position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-      min-width:100%; min-height:100%; width:auto; height:auto; z-index:0;
-      object-fit:cover; filter:brightness(0.42) contrast(1.1);
+      min-width:100%; min-height:100%;
+      width:auto; height:auto; z-index:0;
+      object-fit:cover;
+      filter:brightness(0.42) contrast(1.1);
     }
     .hero::after{
       content:"";
@@ -78,31 +98,57 @@
       z-index:1;
     }
     .hero .content{
-      position:relative; z-index:2; text-align:center; padding:60px 20px 40px; max-width:1100px;
+      position:relative; z-index:2;
+      text-align:center;
+      padding:60px 20px 40px;
+      max-width:1100px;
     }
     .kicker{
-      color:var(--accent); font-weight:700; letter-spacing:0.16em;
-      text-transform:uppercase; font-size:0.78rem;
+      color:var(--accent);
+      font-weight:700;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      font-size:0.78rem;
     }
     .title{
-      font-size:2.4rem; margin:12px 0 8px; color:var(--white);
+      font-size:2.4rem;
+      margin:12px 0 8px;
+      color:var(--white);
     }
     .subtitle{
-      color:#dcdcdc; margin-bottom:6px; font-size:1.02rem;
+      color:#dcdcdc;
+      margin-bottom:6px;
+      font-size:1.02rem;
     }
     .available{
-      color:#eaeaea; font-weight:600; margin-bottom:10px; font-size:0.95rem;
+      color:#eaeaea;
+      font-weight:600;
+      margin-bottom:10px;
+      font-size:0.95rem;
     }
     .cert{
-      color:var(--muted); font-size:0.86rem; margin-bottom:18px;
+      color:var(--muted);
+      font-size:0.86rem;
+      margin-bottom:18px;
     }
 
     .cta-row{
-      display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:14px;
     }
     .btn{
-      background:var(--accent); color:var(--black); border:none; padding:11px 18px; border-radius:999px;
-      font-weight:700; cursor:pointer; text-decoration:none; font-size:0.92rem;
+      background:var(--accent);
+      color:#ffffff; /* хорошо видимый белый текст */
+      border:none;
+      padding:11px 18px;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      font-size:0.92rem;
       box-shadow:0 10px 25px rgba(255,76,41,0.4);
       transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
@@ -112,7 +158,8 @@
       background:#ff6b47;
     }
     .btn.secondary{
-      background:transparent; color:var(--white);
+      background:transparent;
+      color:var(--white);
       border:1px solid rgba(255,255,255,0.14);
       box-shadow:none;
     }
@@ -121,8 +168,17 @@
       color:var(--accent);
     }
 
+    .btn:link,
+    .btn:visited{
+      color:#ffffff;
+    }
+
     /* WRAP / MAIN LAYOUT */
-    .wrap{ max-width:1100px; margin:36px auto 40px; padding:0 20px; }
+    .wrap{
+      max-width:1100px;
+      margin:36px auto 40px;
+      padding:0 20px;
+    }
 
     h2{
       font-size:1.55rem;
@@ -133,47 +189,89 @@
 
     /* PORTFOLIO (SLIDER) */
     .slider{
-      display:flex; gap:12px; align-items:center; justify-content:center; margin-top:18px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:center;
+      margin-top:18px;
     }
     .arrow{
-      background:rgba(255,255,255,0.03); border-radius:9px; padding:9px 11px;
-      cursor:pointer; border:1px solid rgba(255,255,255,0.08); color:var(--white);
+      background:rgba(255,255,255,0.03);
+      border-radius:9px;
+      padding:9px 11px;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--white);
       font-size:1.1rem;
       transition:background .12s ease, transform .12s ease;
     }
-    .arrow:hover{ background:rgba(255,255,255,0.08); transform:translateY(-1px); }
+    .arrow:hover{
+      background:rgba(255,255,255,0.08);
+      transform:translateY(-1px);
+    }
 
     .video-frame{
-      width:720px; max-width:100%; border-radius:14px; overflow:hidden;
+      width:720px;
+      max-width:100%;
+      border-radius:14px;
+      overflow:hidden;
       box-shadow:0 18px 45px rgba(0,0,0,0.7);
       border:1px solid rgba(255,255,255,0.04);
       background:#000;
     }
     .controls{
-      display:flex; gap:10px; justify-content:center; margin-top:12px; align-items:center; flex-wrap:wrap;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      margin-top:12px;
+      align-items:center;
+      flex-wrap:wrap;
       font-size:0.9rem;
     }
 
     /* SERVICES */
     .grid{
-      display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-      gap:18px; margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap:18px;
+      margin-top:18px;
     }
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:16px 16px 14px; border-radius:12px; border-left:4px solid var(--accent);
+      padding:16px 16px 14px;
+      border-radius:12px;
+      border-left:4px solid var(--accent);
       border-right:1px solid rgba(255,255,255,0.02);
       border-bottom:1px solid rgba(255,255,255,0.02);
     }
-    .card h3{ margin:0 0 6px 0; color:var(--accent); font-size:1.02rem; }
-    .card p{ color:#d4d4d4; font-size:0.92rem; }
+    .card h3{
+      margin:0 0 6px 0;
+      color:var(--accent);
+      font-size:1.02rem;
+    }
+    .card p{
+      color:#d4d4d4;
+      font-size:0.92rem;
+    }
 
     /* HOBBIES / 3D */
-    .hobby-links { display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; }
+    .hobby-links{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
     .hobby{
-      display:flex; gap:10px; align-items:center; padding:10px 14px; border-radius:12px;
-      background:rgba(255,255,255,0.02); text-decoration:none; color:var(--white);
-      transform: translateY(0); transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.02);
+      text-decoration:none;
+      color:var(--white);
+      transform: translateY(0);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
       border:1px solid rgba(255,255,255,0.04);
     }
     .hobby:hover{
@@ -182,7 +280,10 @@
       background:rgba(255,76,41,0.05);
     }
     .hobby .icon{
-      width:44px; height:44px; border-radius:9px; display:grid; place-items:center; font-weight:700;
+      width:44px; height:44px;
+      border-radius:9px;
+      display:grid; place-items:center;
+      font-weight:700;
       background:linear-gradient(135deg,var(--accent), #ff8a6b);
       color:var(--black);
       font-size:1.02rem;
@@ -191,55 +292,103 @@
     .hobby-sub{ font-size:0.86rem; color:var(--muted); }
 
     /* CONTACT */
-    .contact-row{ display:flex; gap:24px; flex-wrap:wrap; margin-top:10px; }
+    .contact-row{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
     .contact-card{
       flex:1 1 320px;
       background:rgba(255,255,255,0.02);
-      padding:16px 16px 16px;
+      padding:16px;
       border-radius:12px;
       border:1px solid rgba(255,255,255,0.06);
     }
-    .contact-card p{ margin:6px 0; color:#e2e2e2; font-size:0.94rem; }
-    .contact-card a{ color:var(--accent); text-decoration:none; }
-    .contact-card a:hover{ text-decoration:underline; }
+    .contact-card p{
+      margin:6px 0;
+      color:#e2e2e2;
+      font-size:0.94rem;
+    }
+    .contact-card a{
+      color:var(--accent);
+      text-decoration:none;
+    }
+    .contact-card a:hover{
+      text-decoration:underline;
+    }
 
     label{
-      display:block; font-weight:600; font-size:0.86rem; color:#ddd; margin-bottom:6px;
+      display:block;
+      font-weight:600;
+      font-size:0.86rem;
+      color:#ddd;
+      margin-bottom:6px;
     }
     input, textarea{
-      width:100%; padding:9px 10px; border-radius:8px;
+      width:100%;
+      padding:9px 10px;
+      border-radius:8px;
       border:1px solid rgba(255,255,255,0.07);
-      background: rgba(0,0,0,0.32); color:var(--white);
+      background: rgba(0,0,0,0.32);
+      color:var(--white);
       font-size:0.92rem;
     }
-    textarea{ min-height:120px; resize:vertical; }
-
-    form .row{ display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
+    textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+    form .row{
+      display:flex;
+      gap:10px;
+      margin-bottom:10px;
+      flex-wrap:wrap;
+    }
 
     /* QR & socials */
-    .socials{ display:flex; gap:10px; margin-top:12px; align-items:center; flex-wrap:wrap; }
+    .socials{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
     .qr{
-      display:flex; gap:8px; align-items:center; background:rgba(255,255,255,0.02);
-      padding:8px 8px 8px 10px; border-radius:10px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      background:rgba(255,255,255,0.02);
+      padding:8px 8px 8px 10px;
+      border-radius:10px;
       border:1px solid rgba(255,255,255,0.06);
     }
     .qr img{
-      width:86px; height:86px; object-fit:cover; border-radius:8px;
+      width:86px;
+      height:86px;
+      object-fit:cover;
+      border-radius:8px;
       background:#000;
     }
 
     /* MERCH */
     .merch{
-      margin-top:16px; padding:12px 12px 14px; border-radius:12px;
+      margin-top:16px;
+      padding:12px 12px 14px;
+      border-radius:12px;
       background: linear-gradient(90deg, rgba(255,76,41,0.12), rgba(0,0,0,0.02));
       border:1px solid rgba(255,76,41,0.28);
     }
-    .merch p{ color:var(--muted); font-size:0.86rem; }
+    .merch p{
+      color:var(--muted);
+      font-size:0.86rem;
+    }
 
     /* FOOTER */
     footer{
-      margin-top:40px; padding:22px 20px 26px;
-      text-align:center; color:var(--muted);
+      margin-top:40px;
+      padding:22px 20px 26px;
+      text-align:center;
+      color:var(--muted);
       border-top:1px solid rgba(255,255,255,0.06);
       background:radial-gradient(circle at top, #1a1a1a 0, #050505 60%);
     }
@@ -304,8 +453,8 @@
   <section id="portfolio" aria-label="Portfolio">
     <h2>Portfolio</h2>
     <p style="color:#cfcfcf">
-      Selected aerial work from the AetherCine YouTube channel.  
-      Use arrows or click <b>Random</b> to explore more.
+      Selected aerial work from the AetherCine YouTube channel.<br>
+      Use arrows or click <b>Random video</b> to explore more.
     </p>
 
     <div class="slider">
@@ -320,8 +469,8 @@
 
     <div class="controls">
       <button class="btn secondary" id="randomBtn">Random video</button>
-      <div style="color:var(--muted); margin-left:4px">
-        Channel: 
+      <div style="color:var(--muted); margin-left:4px;">
+        Channel:
         <a href="https://www.youtube.com/@Aether_Cine" target="_blank" style="color:var(--accent); text-decoration:none;">
           @Aether_Cine
         </a>
@@ -335,27 +484,19 @@
     <div class="grid">
       <div class="card">
         <h3>Drone Videography</h3>
-        <p>
-          4K aerial filming for commercial projects, real estate, events, social media content and storytelling from above.
-        </p>
+        <p>4K aerial filming for commercial projects, real estate, events, social media content and storytelling from above.</p>
       </div>
       <div class="card">
         <h3>Aerial & Infrared Inspections</h3>
-        <p>
-          Visual and infrared inspections of roofs, structures, solar panels, equipment and hard-to-reach areas.
-        </p>
+        <p>Visual and infrared inspections of roofs, structures, solar panels, equipment and hard-to-reach areas.</p>
       </div>
       <div class="card">
         <h3>Post-Production</h3>
-        <p>
-          Editing, color grading, sound design and motion graphics to turn raw footage into a finished story.
-        </p>
+        <p>Editing, color grading, sound design and motion graphics to turn raw footage into a finished story.</p>
       </div>
       <div class="card">
-        <h3>Technical & R&D Content</h3>
-        <p>
-          Product reviews, drone upgrades, teardown videos, repair walkthroughs and technical experiments.
-        </p>
+        <h3>Technical & R&amp;D Content</h3>
+        <p>Product reviews, drone upgrades, teardown videos, repair walkthroughs and technical experiments.</p>
       </div>
     </div>
   </section>
@@ -380,7 +521,7 @@
         <div class="icon">T</div>
         <div>
           <div class="hobby-title">Thingiverse</div>
-          <div class="hobby-sub">Open-source designs & parts</div>
+          <div class="hobby-sub">Open-source designs &amp; parts</div>
         </div>
       </a>
 
@@ -388,7 +529,7 @@
         <div class="icon">Y</div>
         <div>
           <div class="hobby-title">Chill Gizmos</div>
-          <div class="hobby-sub">Reviews, experiments & gadgets</div>
+          <div class="hobby-sub">Reviews, experiments &amp; gadgets</div>
         </div>
       </a>
     </div>
@@ -398,42 +539,38 @@
   <section id="contact" style="margin-top:32px">
     <h2>Contact</h2>
     <div class="contact-row">
-      
+
       <!-- CONTACT INFO + QR -->
       <div class="contact-card">
         <p><strong>Phone:</strong> 559 484 88 19</p>
         <p><strong>Email:</strong>
-          <a href="mailto:khrstina.fpv@gmail.com">
-            khrstina.fpv@gmail.com
-          </a>
+          <a href="mailto:khrstina.fpv@gmail.com">khrstina.fpv@gmail.com</a>
         </p>
         <p><strong>Instagram:</strong>
-          <a href="https://www.instagram.com/khristina_fpv/" target="_blank">
-            @khristina_fpv
-          </a>
+          <a href="https://www.instagram.com/khrstina_fpv/" target="_blank">@khrstina_fpv</a>
         </p>
         <p><strong>YouTube:</strong>
-          <a href="https://www.youtube.com/@Aether_Cine" target="_blank">
-            Aether_Cine
-          </a>
+          <a href="https://www.youtube.com/@Aether_Cine" target="_blank">Aether_Cine</a>
         </p>
         <p><strong>Website:</strong>
-          <a href="https://www.aethercine.com" target="_blank">
-            www.aethercine.com
-          </a>
+          <a href="https://www.aethercine.com" target="_blank">www.aethercine.com</a>
         </p>
 
-        <!-- QR CODES -->
+        <!-- QR CODES (новый сервис, иконки будут видны) -->
         <div class="socials">
           <div class="qr">
             <div style="font-size:0.9rem; font-weight:700">Instagram</div>
-            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://www.instagram.com/khristina_fpv/" 
-                 alt="Instagram QR">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.instagram.com/khrstina_fpv/"
+              alt="Instagram QR"
+            />
           </div>
           <div class="qr">
             <div style="font-size:0.9rem; font-weight:700">YouTube</div>
-            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://www.youtube.com/@Aether_Cine" 
-                 alt="YouTube QR">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.youtube.com/@Aether_Cine"
+              alt="YouTube QR"
+            />
           </div>
         </div>
 
@@ -450,17 +587,22 @@
         </div>
       </div>
 
-      <!-- FORMSPREE FORM -->
+      <!-- CONTACT FORM (FormSubmit) -->
       <div class="contact-card" style="min-width:300px; max-width:540px;">
         <h3 style="color:var(--accent); margin-top:0">Request a video service</h3>
         <p style="color:var(--muted); font-size:0.9rem;">
           Fill out the form below — you’ll receive a reply directly to your email.
         </p>
 
-        <form id="requestForm" action="https://formspree.io/f/mvgzgvzb" method="POST">
-          <!-- hidden settings -->
+        <form
+          id="requestForm"
+          action="https://formsubmit.co/khrstina.fpv@gmail.com"
+          method="POST"
+        >
+          <!-- FormSubmit configuration -->
           <input type="hidden" name="_subject" value="New AetherCine service request">
           <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
 
           <label for="email">Email for response</label>
           <input id="email" name="Email" type="email" placeholder="you@example.com" required>
@@ -486,7 +628,7 @@
         </form>
 
         <p style="color:var(--muted); font-size:0.83rem; margin-top:10px;">
-          Powered by Formspree — no email client required.
+          Powered by FormSubmit.co — first submission may require a one-time confirmation email.
         </p>
       </div>
 
