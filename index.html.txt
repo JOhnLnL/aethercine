@@ -575,17 +575,23 @@
         </div>
 
         <!-- MERCH -->
-        <div class="merch">
-          <h4 style="margin:0 0 6px 0; color:var(--accent)">Merch & Support</h4>
-          <p style="margin:0 0 10px 0;">
-            Merch and donation options are in development. Future plans include branded apparel, prints and support links (PayPal / Ko-fi / Patreon).
-          </p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn secondary" href="#" onclick="alert('Merch section coming soon'); return false;">Buy merch</a>
-            <a class="btn" href="#" onclick="alert('Donation links coming soon'); return false;">Donate</a>
-          </div>
-        </div>
-      </div>
+       <div class="merch">
+  <h4 style="margin:0 0 6px 0; color:var(--accent)">Support AetherCine</h4>
+
+  <p style="margin:0 0 10px 0;">
+    If you like my work — you can support future projects, drone upgrades and content creation.
+  </p>
+
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn" href="https://ko-fi.com/modeling_art_design" target="_blank">
+      ☕ Donate via Ko-fi
+    </a>
+
+    <a class="btn secondary" href="#contact">
+      Work with me
+    </a>
+  </div>
+</div>
 
       <!-- CONTACT FORM (FormSubmit) -->
       <div class="contact-card" style="min-width:300px; max-width:540px;">
